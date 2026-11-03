@@ -6,36 +6,26 @@ five minutes.
 
 ## What you need
 
-- **Node.js 18 or newer** ([nodejs.org](https://nodejs.org)).
-- **opencode**: `npm install -g opencode-ai`
+- **Git**, and your account in the class GitHub organization (this
+  repository is private to it).
 - **Your OpenRouter key** from your instructor. It starts with `sk-or-`.
   Treat it like a password: don't paste it into chats, code or commits.
 
-## Quick start: try it with one command
+On Windows, run the commands below in **Git Bash** (it comes with Git).
 
-This downloads this folder and starts opencode with the class setup right
-away, without installing opencode (you only need Node.js and Git). Put your
-key where it says `sk-or-...`. Git may ask you to sign in to GitHub: this
-repository is private to the class organization.
-
-**macOS, Linux, or Git Bash on Windows:**
+## 1. Install opencode
 
 ```bash
-git clone https://github.com/RIT-New-Media-Capstone/class-ai-setup && OPENROUTER_API_KEY=sk-or-... OPENCODE_CONFIG="$PWD/class-ai-setup/configs/spaceballs.json" npx -y opencode-ai
+curl -fsSL https://opencode.ai/install | bash
 ```
 
-**Windows PowerShell:**
+Open a new terminal, then check it worked:
 
 ```bash
-git clone https://github.com/RIT-New-Media-Capstone/class-ai-setup; $env:OPENROUTER_API_KEY='sk-or-...'; $env:OPENCODE_CONFIG="$PWD\class-ai-setup\configs\spaceballs.json"; npx -y opencode-ai
+opencode --version
 ```
 
-The key and setup only last for that terminal window. To keep them, run
-the installer (**Set it up** below) from the `class-ai-setup` folder.
-
-## Set it up
-
-Get this folder (once), unless the quick start already did:
+## 2. Get this folder
 
 ```bash
 git clone https://github.com/RIT-New-Media-Capstone/class-ai-setup
@@ -45,21 +35,24 @@ git clone https://github.com/RIT-New-Media-Capstone/class-ai-setup
 cd class-ai-setup
 ```
 
-**macOS, Linux, or Git Bash on Windows:**
+Git may ask you to sign in to GitHub.
+
+## 3. Connect opencode to the class
 
 ```bash
 ./install.sh
 ```
 
-**Windows PowerShell:**
+It asks for your OpenRouter key (it won't show it as you paste) and points
+opencode at the class setup in this folder.
+
+Prefer Windows PowerShell to Git Bash? Use this instead:
 
 ```bash
 powershell -ExecutionPolicy RemoteSigned -File install.ps1
 ```
 
-The installer asks for your key (it won't show it as you paste) and points
-opencode at the class setup in this folder. Then **open a new terminal** and
-check it:
+Then **open a new terminal** and check it:
 
 ```bash
 opencode models
@@ -104,11 +97,12 @@ Running the installer again with a different setup switches to it.
 
 | You see | What to do |
 | ------- | ---------- |
-| `opencode models` lists lots of models, not four | Open a new terminal. If it persists, run the installer again. |
+| `opencode: command not found` | Open a new terminal. If it persists, run the install command in step 1 again. |
+| `opencode models` lists lots of models, not four | Open a new terminal. If it persists, run `./install.sh` again. |
+| `git clone` says the repository isn't found | Sign in to GitHub with the account in the class organization. |
 | `Preset "..." not found for this user` | Your key is from a different OpenRouter workspace. Ask your instructor for a class key. |
 | `401` or `User not found` | Your key is wrong or was disabled. Ask your instructor. |
 | `402` / "requires more credits" | Your key's credit limit is used up. Tell your instructor. |
-| `opencode: command not found` | Install it: `npm install -g opencode-ai`, then open a new terminal. |
 
 ## What the installer changes
 
@@ -118,6 +112,6 @@ Only two settings, nothing else on your computer:
 - `OPENROUTER_API_KEY`: your key, only if it wasn't set already.
 
 On macOS/Linux/Git Bash they go in your shell profile (`~/.zshrc` or
-`~/.bashrc`) between `class opencode setup` markers; on Windows they're user
-environment variables. Your own opencode settings are left alone. To undo,
-delete those lines (or the two variables).
+`~/.bashrc`) between `class opencode setup` markers; on Windows PowerShell
+they're user environment variables. Your own opencode settings are left
+alone. To undo, delete those lines (or the two variables).

@@ -78,7 +78,7 @@ echo "Saved to $PROFILE: OPENCODE_CONFIG -> $SETUP${KEY_LINE:+ and your key}."
 if command -v opencode >/dev/null 2>&1; then
   echo "opencode $(opencode --version 2>/dev/null | head -1) is installed."
 else
-  echo "opencode isn't installed yet. Install it with:  npm install -g opencode-ai"
+  echo "opencode isn't installed yet. Install it with:  curl -fsSL https://opencode.ai/install | bash"
 fi
 
 cat <<EOF

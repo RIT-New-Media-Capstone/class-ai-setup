@@ -57,7 +57,7 @@ if ($existingKey -or $env:OPENROUTER_API_KEY) {
 if (Get-Command opencode -ErrorAction SilentlyContinue) {
   Write-Host "opencode is installed: $(opencode --version 2>$null | Select-Object -First 1)"
 } else {
-  Write-Host "opencode isn't installed yet. Install it with:  npm install -g opencode-ai"
+  Write-Host "opencode isn't installed yet. In Git Bash, run:  curl -fsSL https://opencode.ai/install | bash"
 }
 
 Write-Host ''
