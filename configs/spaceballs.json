@@ -1,0 +1,53 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "enabled_providers": [
+    "class"
+  ],
+  "provider": {
+    "class": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "OpenRouter (class)",
+      "options": {
+        "baseURL": "https://openrouter.ai/api/v1",
+        "apiKey": "{env:OPENROUTER_API_KEY}"
+      },
+      "models": {
+        "@preset/light": {
+          "name": "light (background)",
+          "limit": {
+            "context": 1048576,
+            "output": 32000
+          }
+        },
+        "@preset/ridiculous": {
+          "name": "ridiculous (main)",
+          "limit": {
+            "context": 1048576,
+            "output": 32000
+          }
+        },
+        "@preset/ludicrous": {
+          "name": "ludicrous (planning)",
+          "limit": {
+            "context": 1048576,
+            "output": 32000
+          }
+        },
+        "@preset/plaid": {
+          "name": "plaid (top rung)",
+          "limit": {
+            "context": 1048576,
+            "output": 32000
+          }
+        }
+      }
+    }
+  },
+  "model": "class/@preset/ridiculous",
+  "small_model": "class/@preset/light",
+  "agent": {
+    "plan": {
+      "model": "class/@preset/ludicrous"
+    }
+  }
+}
