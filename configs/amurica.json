@@ -1,16 +1,10 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "enabled_providers": [
-    "class"
+    "openrouter"
   ],
   "provider": {
-    "class": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "OpenRouter (class)",
-      "options": {
-        "baseURL": "https://openrouter.ai/api/v1",
-        "apiKey": "{env:OPENROUTER_API_KEY}"
-      },
+    "openrouter": {
       "models": {
         "@preset/freedom": {
           "name": "freedom (background)",
@@ -40,14 +34,20 @@
             "output": 32000
           }
         }
-      }
+      },
+      "whitelist": [
+        "@preset/freedom",
+        "@preset/liberty",
+        "@preset/liberty-plus",
+        "@preset/freedom-max-20x"
+      ]
     }
   },
-  "model": "class/@preset/liberty",
-  "small_model": "class/@preset/freedom",
+  "model": "openrouter/@preset/liberty",
+  "small_model": "openrouter/@preset/freedom",
   "agent": {
     "plan": {
-      "model": "class/@preset/liberty-plus"
+      "model": "openrouter/@preset/liberty-plus"
     }
   }
 }
