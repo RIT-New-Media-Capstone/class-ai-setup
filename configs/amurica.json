@@ -1,10 +1,12 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "enabled_providers": [
-    "openrouter"
-  ],
-  "provider": {
-    "openrouter": {
+  "providers": {
+    "class": {
+      "name": "Class",
+      "package": "@opencode/ai/providers/openrouter",
+      "compatibility": {
+        "cacheFormat": "anthropic"
+      },
       "models": {
         "@preset/freedom": {
           "name": "freedom (background)",
@@ -34,23 +36,35 @@
             "output": 32000
           }
         }
-      },
-      "whitelist": [
-        "@preset/freedom",
-        "@preset/liberty",
-        "@preset/liberty-plus",
-        "@preset/freedom-max-20x"
-      ]
+      }
     }
   },
-  "model": "openrouter/@preset/liberty",
-  "small_model": "openrouter/@preset/freedom",
-  "agent": {
+  "policies": [
+    {
+      "action": "provider.use",
+      "resource": "*",
+      "effect": "deny"
+    },
+    {
+      "action": "provider.use",
+      "resource": "class",
+      "effect": "allow"
+    }
+  ],
+  "model": "class/@preset/liberty",
+  "agents": {
+    "title": {
+      "model": "class/@preset/freedom"
+    },
     "plan": {
-      "model": "openrouter/@preset/liberty-plus"
+      "model": "class/@preset/liberty-plus"
     }
   },
-  "permission": {
-    "bash": "ask"
-  }
+  "permissions": [
+    {
+      "action": "shell",
+      "resource": "*",
+      "effect": "ask"
+    }
+  ]
 }

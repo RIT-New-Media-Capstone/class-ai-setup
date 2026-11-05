@@ -1,10 +1,9 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "enabled_providers": [
-    "openrouter"
-  ],
-  "provider": {
-    "openrouter": {
+  "providers": {
+    "class": {
+      "name": "Class",
+      "package": "@opencode/ai/providers/openrouter",
       "models": {
         "@preset/light": {
           "name": "light (background)",
@@ -34,23 +33,35 @@
             "output": 32000
           }
         }
-      },
-      "whitelist": [
-        "@preset/light",
-        "@preset/ridiculous",
-        "@preset/ludicrous",
-        "@preset/plaid"
-      ]
+      }
     }
   },
-  "model": "openrouter/@preset/ridiculous",
-  "small_model": "openrouter/@preset/light",
-  "agent": {
+  "policies": [
+    {
+      "action": "provider.use",
+      "resource": "*",
+      "effect": "deny"
+    },
+    {
+      "action": "provider.use",
+      "resource": "class",
+      "effect": "allow"
+    }
+  ],
+  "model": "class/@preset/ridiculous",
+  "agents": {
+    "title": {
+      "model": "class/@preset/light"
+    },
     "plan": {
-      "model": "openrouter/@preset/ludicrous"
+      "model": "class/@preset/ludicrous"
     }
   },
-  "permission": {
-    "bash": "ask"
-  }
+  "permissions": [
+    {
+      "action": "shell",
+      "resource": "*",
+      "effect": "ask"
+    }
+  ]
 }

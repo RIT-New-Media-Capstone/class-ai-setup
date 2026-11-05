@@ -10,12 +10,21 @@ below in **Git Bash**.
 ## 1. Install opencode
 
 ```bash
-curl -fsSL https://opencode.ai/install | bash
+curl -fsSL https://opencode.ai/v2/install | bash
+```
+
+## 2. Add opencode to your PATH
+
+If the installer said `No config file found`, which is normal on Windows, run
+this instead of copying the line it printed. Otherwise, skip it.
+
+```bash
+echo 'export PATH="$HOME/.opencode/bin:$PATH"' >> ~/.bash_profile
 ```
 
 Then open a new terminal.
 
-## 2. Install the class config
+## 3. Install the class config
 
 ```bash
 mkdir -p ~/.config/opencode && curl -fsSL https://raw.githubusercontent.com/RIT-New-Media-Capstone/class-ai-setup/main/configs/spaceballs.json -o ~/.config/opencode/opencode.json
@@ -23,21 +32,21 @@ mkdir -p ~/.config/opencode && curl -fsSL https://raw.githubusercontent.com/RIT-
 
 This replaces any opencode config you already had at that path.
 
-## 3. Add your key
+## 4. Add your key
 
 ```bash
-opencode auth login -p openrouter
+opencode auth login class
 ```
 
 Paste your key when it asks, then press Enter.
 
-## 4. Check it
+## 5. Check it
 
 ```bash
 opencode models
 ```
 
-You should see exactly four models starting with `openrouter/@preset/`.
+You should see exactly four models starting with `class/@preset/`.
 Then go to any project folder and start it:
 
 ```bash
@@ -49,15 +58,18 @@ opencode
 - **Plan mode:** press **Tab** in opencode to switch to plan mode, where it
   thinks a problem through without changing files. Tab again to build.
 - **Another setup:** if your instructor names one (e.g. `amurica`), use its
-  file name in place of `spaceballs.json` in step 2.
-- **When the class setup changes:** run step 2 again.
+  file name in place of `spaceballs.json` in step 3.
+- **When the class setup changes:** run step 3 again.
 - **Ran `./install.sh` in class?** Delete the lines between
   `# >>> class opencode setup >>>` and `# <<< class opencode setup <<<` in
   `~/.bashrc` (or `~/.zshrc`), then open a new terminal.
 
 | You see | What to do |
 | ------- | ---------- |
-| More than four models in step 4 | Check you did step 2, and the note about `./install.sh` above. |
-| `Preset "..." not found for this user` | That isn't a class key. Run step 3 again with the key from your instructor. |
-| `401` or `User not found` | The key is mistyped or disabled. Run step 3 again, or ask your instructor. |
+| `opencode: command not found` or `not recognized` | Do step 2, then open a new terminal. On Windows, use Git Bash. |
+| `V2 permissions are not supported by OpenCode V1` | You're running the old opencode. Do steps 1 and 2, then open a new terminal. |
+| More than four models in step 5 | Check you did step 3, and the note about `./install.sh` above. |
+| `No cookie auth credentials found` | Your key isn't saved. Do step 4. |
+| `Preset "..." not found for this user` | That isn't a class key. Run step 4 again with the key from your instructor. |
+| `401` or `User not found` | The key is mistyped or disabled. Run step 4 again, or ask your instructor. |
 | `402` / "requires more credits" | This key's credit is used up. Tell your instructor. |
