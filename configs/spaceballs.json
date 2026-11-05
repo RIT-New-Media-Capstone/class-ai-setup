@@ -49,5 +49,8 @@
     "plan": {
       "model": "openrouter/@preset/ludicrous"
     }
+  },
+  "permission": {
+    "bash": "ask"
   }
 }

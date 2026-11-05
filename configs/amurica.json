@@ -49,5 +49,8 @@
     "plan": {
       "model": "openrouter/@preset/liberty-plus"
     }
+  },
+  "permission": {
+    "bash": "ask"
   }
 }
